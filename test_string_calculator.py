@@ -2,8 +2,11 @@ from string_calculator import add
 
 
 def test_add_with_empty_string_returns_zero():
-    # Given / When
     result = add("")
 
-    # Then
     assert result is "0"
+
+def test_add_with_1_returns_1():
+    result = add("1")
+
+    assert result is "1"
