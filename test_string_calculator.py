@@ -2,13 +2,13 @@ from string_calculator import add
 
 
 def test_add_with_empty_string_returns_zero():
-    assert add("") is "0"
+    assert add("") == "0"
 
 def test_add_with_1_returns_1():
-    assert add("1") is "1"
+    assert add("1") == "1"
 
 def test_add_with_2_returns_2():
-    assert add("2") is "2"
+    assert add("2") == "2"
 
 def test_add_with_2_and_5_returns_7():
-    assert add("2,5") is "7"
+    assert add("2,5") == "7"
