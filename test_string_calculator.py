@@ -21,3 +21,6 @@ def test_add_with_1point1_and_2point2_returns_3point3():
 
 def test_add_with_2point3_and_7point4_returns_7point7():
     assert add("2.3,5.4") == "7.7"
+
+def test_add_with_new_line_separator():
+    assert add("4\n5") == "9"
