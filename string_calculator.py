@@ -6,11 +6,9 @@ def add(numbers: str) -> str:
 
     return str(
         '%g'%(
-            float(
-                reduce(
-                    lambda a, b: float(a) + float(b),
-                    numbers.split(",")
-                )
+            reduce(
+                lambda a, b: a + b,
+                [float(num) for num in numbers.split(",")]
             )
         )
     )
