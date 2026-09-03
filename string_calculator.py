@@ -5,8 +5,12 @@ def add(numbers: str) -> str:
         return "0"
 
     return str(
-        reduce(
-            lambda a, b: int(a) + int(b),
-            numbers.split(",")
+        '%g'%(
+            float(
+                reduce(
+                    lambda a, b: float(a) + float(b),
+                    numbers.split(",")
+                )
+            )
         )
     )

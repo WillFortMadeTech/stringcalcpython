@@ -13,5 +13,5 @@ def test_add_with_2_returns_2():
 def test_add_with_2_and_5_returns_7():
     assert add("2,5") == "7"
 
-def test_add_with_2point4_and_5point3_returns_7point7():
-    assert add("2.4,5.3") == "7.7"
+def test_add_with_2point2_and_5point2_returns_7point4():
+    assert add("2.2,5.2") == "7.4"
