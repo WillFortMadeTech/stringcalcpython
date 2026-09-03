@@ -1,9 +1,9 @@
 from string_calculator import add
 
 
-def test_add_is_wired_up():
+def test_add_with_empty_string_returns_zero():
     # Given / When
     result = add("")
 
     # Then
-    assert result is True
+    assert result is "0"
