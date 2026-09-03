@@ -1,10 +1,10 @@
+from functools import reduce 
+
 def add(numbers: str) -> str:
     if (numbers == ""):
         return "0"
 
     splitText = numbers.split(",")
-    addition = 0
-    for value in splitText:
-        addition += int(value)
-    return str(addition)
+    ans = reduce(lambda a, b: int(a) + int(b), splitText)
+    return str(ans)
 
