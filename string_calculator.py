@@ -8,7 +8,7 @@ def add(numbers: str) -> str:
         '%g'%(
             reduce(
                 lambda a, b: a + b,
-                [float(num) for num in numbers.split(",")]
+                [float(num) for num in numbers.replace("\n", ",").split(",")]
             )
         )
     )
