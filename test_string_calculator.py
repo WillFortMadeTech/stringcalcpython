@@ -1,26 +1,27 @@
 from string_calculator import add
+import pytest
 
 
 def test_add_with_empty_string_returns_zero():
     assert add("") == "0"
 
-def test_add_with_1_returns_1():
-    assert add("1") == "1"
+@pytest.mark.parametrize("input_str,expected",
+    [
+        ["1", "1"],
+        ["2", "2"],
+        ["2,5", "7"],
+        ["2.2,5.2", "7.4"],
+        ["1.1,2.2", "3.3"],
+        ["2.3,5.4", "7.7"]
+    ]
+)
+def test_can_add_comma_separated_numbers(input_str, expected):
+    assert add(input_str) == expected
 
-def test_add_with_2_returns_2():
-    assert add("2") == "2"
-
-def test_add_with_2_and_5_returns_7():
-    assert add("2,5") == "7"
-
-def test_add_with_2point2_and_5point2_returns_7point4():
-    assert add("2.2,5.2") == "7.4"
-
-def test_add_with_1point1_and_2point2_returns_3point3():
-    assert add("1.1,2.2") == "3.3"
-
-def test_add_with_2point3_and_7point4_returns_7point7():
-    assert add("2.3,5.4") == "7.7"
-
-def test_add_with_new_line_separator():
-    assert add("4\n5") == "9"
+@pytest.mark.parametrize("input_str,expected",
+    [
+        ["4\n5","9"]
+    ]
+)
+def test_can_add_newline_as_a_separator(input_str, expected):
+    assert add(input_str) == expected
