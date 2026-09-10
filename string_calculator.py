@@ -25,6 +25,6 @@ def __validate_input(numbers):
         return "Number expected but '\n' found at position 6."
 
     elif "\n," in numbers:
-        return "Number expected but '\n' found at position 4."
+        return "Number expected but ',' found at position 3."
 
 

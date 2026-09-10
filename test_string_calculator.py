@@ -30,7 +30,9 @@ def test_can_add_newline_as_a_separator(input_str, expected):
 @pytest.mark.parametrize("input_str,expected",
     [
         ["175.2,\n35","Number expected but '\n' found at position 6."],
-        ["17\n,35","Number expected but '\n' found at position 4."]
+        ["17\n,35","Number expected but ',' found at position 3."]
+        ["17,,35","Number expected but ',' found at position 3."]
+        ["17\n\n35","Number expected but '\n' found at position 3."]
     ]
 )
 def test_with_adjacent_separators(input_str, expected):
