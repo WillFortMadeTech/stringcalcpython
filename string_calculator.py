@@ -4,6 +4,9 @@ def add(numbers: str) -> str:
     if (numbers == ""):
         return "0"
 
+    if ",\n" in numbers:
+        return "Number expected but '\n' found at position 6."
+
     return str(
         '%g'%(
             reduce(

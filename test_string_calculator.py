@@ -27,6 +27,10 @@ def test_can_add_comma_separated_numbers(input_str, expected):
 def test_can_add_newline_as_a_separator(input_str, expected):
     assert add(input_str) == expected
 
-
-def test_with_adjacent_separators():
-    assert add("175.2,\n35") == "Number expected but '\n' found at position 6."
+@pytest.mark.parametrize("input_str,expected",
+    [
+        ["175.2,\n35","Number expected but '\n' found at position 6."]
+    ]
+)
+def test_with_adjacent_separators(input_str, expected):
+    assert add(input_str) == expected
