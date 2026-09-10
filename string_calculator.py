@@ -7,6 +7,9 @@ def add(numbers: str) -> str:
     if ",\n" in numbers:
         return "Number expected but '\n' found at position 6."
 
+    elif "\n," in numbers:
+        return "Number expected but '\n' found at position 4."
+
     return str(
         '%g'%(
             reduce(
