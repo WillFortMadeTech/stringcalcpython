@@ -7,11 +7,11 @@ def add(numbers: str) -> str:
 
     separators = [",", "\n"]
 
-    if (numbers == ""):
+    if numbers == "":
         return "0"
     
     errors = __validate_input(separators, numbers)
-    if(errors):
+    if errors:
         return errors
 
     numbers_array = re.split("|".join(map(re.escape, separators)), numbers)
