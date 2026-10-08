@@ -37,3 +37,7 @@ def test_can_add_newline_as_a_separator(input_str, expected):
 )
 def test_with_adjacent_separators(input_str, expected):
     assert add(input_str) == expected
+
+
+def test_missing_number_in_last_position_returns_error():
+    assert add("1,3,") == "Number expected but EOF found"
