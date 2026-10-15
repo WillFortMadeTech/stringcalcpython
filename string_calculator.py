@@ -27,6 +27,9 @@ def add(numbers: str) -> str:
         return str(error)
 
 def __validate_input(separators, numbers):
+    if (numbers[len(numbers)-1] in separators):
+        raise ValueError("Number expected but EOF found")
+
     for position in range(1, len(numbers)):
         if numbers[position] in separators and numbers[position - 1] in separators:
             raise ValueError(f"Number expected but '{numbers[position]}' found at position {position}.")
