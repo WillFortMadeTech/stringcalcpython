@@ -3,13 +3,9 @@ from functools import reduce
 
 
 def add(numbers: str) -> str:
-
     separators = [",", "\n"]
 
-    if numbers.startswith("//"):
-        splitNumbers = numbers[2:].split("\n")
-        separators = [splitNumbers[0]]
-        numbers = splitNumbers[1]
+    numbers, separators = __handle_custom_delimiters(numbers, separators)
 
     if numbers == "":
         return "0"
@@ -42,3 +38,11 @@ def __must_not_include_empty_number(separators, numbers):
             raise ValueError(
                 f"Number expected but '{numbers[position]}' found at position {position}."
             )
+
+
+def __handle_custom_delimiters(numbers: str, separators: list[str]) -> tuple[str, list[str]]:
+    if numbers.startswith("//"):
+        splitNumbers = numbers[2:].split("\n")
+        separators = [splitNumbers[0]]
+        numbers = splitNumbers[1]
+    return numbers, separators
