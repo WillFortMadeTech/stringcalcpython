@@ -6,6 +6,11 @@ def add(numbers: str) -> str:
 
     separators = [",", "\n"]
 
+    if numbers.startswith("//"):
+        splitNumbers = numbers[2:].split("\n")
+        separators = [splitNumbers[0]]
+        numbers = splitNumbers[1]
+
     if numbers == "":
         return "0"
 
