@@ -43,5 +43,13 @@ def test_missing_number_in_last_position_returns_error():
     assert add("1,3,") == "Number expected but EOF found"
 
 
-def test_can_use_custom_delimiters():
-    assert add("//;\n1;2") == "3"
+@pytest.mark.parametrize(
+    "input_str,expected",
+    [
+        ["//;\n1;2", "3"],
+        ["//|\n1|2|3", "6"],
+        ["//sep\n2sep3", "5"],
+    ],
+)
+def test_can_use_custom_delimiters(input_str, expected):
+    assert add(input_str) == expected
