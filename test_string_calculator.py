@@ -5,35 +5,35 @@ import pytest
 def test_add_with_empty_string_returns_zero():
     assert add("") == "0"
 
-@pytest.mark.parametrize("input_str,expected",
+
+@pytest.mark.parametrize(
+    "input_str,expected",
     [
         ["1", "1"],
         ["2", "2"],
         ["2,5", "7"],
         ["2.2,5.2", "7.4"],
         ["1.1,2.2", "3.3"],
-        ["2.3,5.4", "7.7"]
-    ]
+        ["2.3,5.4", "7.7"],
+    ],
 )
 def test_can_add_comma_separated_numbers(input_str, expected):
     assert add(input_str) == expected
 
-@pytest.mark.parametrize("input_str,expected",
-    [
-        ["4\n5","9"],
-        ["4\n5,6","15"]
-    ]
-)
+
+@pytest.mark.parametrize("input_str,expected", [["4\n5", "9"], ["4\n5,6", "15"]])
 def test_can_add_newline_as_a_separator(input_str, expected):
     assert add(input_str) == expected
 
-@pytest.mark.parametrize("input_str,expected",
+
+@pytest.mark.parametrize(
+    "input_str,expected",
     [
-        ["175.2,\n35","Number expected but '\n' found at position 6."],
-        ["17\n,35","Number expected but ',' found at position 3."],
-        ["17,,35","Number expected but ',' found at position 3."],
-        ["17\n\n35","Number expected but '\n' found at position 3."]
-    ]
+        ["175.2,\n35", "Number expected but '\n' found at position 6."],
+        ["17\n,35", "Number expected but ',' found at position 3."],
+        ["17,,35", "Number expected but ',' found at position 3."],
+        ["17\n\n35", "Number expected but '\n' found at position 3."],
+    ],
 )
 def test_with_adjacent_separators(input_str, expected):
     assert add(input_str) == expected
@@ -41,3 +41,7 @@ def test_with_adjacent_separators(input_str, expected):
 
 def test_missing_number_in_last_position_returns_error():
     assert add("1,3,") == "Number expected but EOF found"
+
+
+def test_can_use_custom_delimiters():
+    assert add("//;\n1;2") == "3"
