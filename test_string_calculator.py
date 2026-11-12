@@ -59,6 +59,7 @@ def test_can_use_custom_delimiters(input_str, expected):
     "input_str,expected",
     [
         ["//|\n1|2,3", "'|' expected but ',' found at position 3."],
+        ["//sep\n1sep2,3", "'sep' expected but ',' found at position 5."],
         ["3,1,5%6", "',' expected but '%' found at position 5."],
         ["3.1,1,5.3%6", "',' expected but '%' found at position 9."],
         ["3,16,51%6", "',' expected but '%' found at position 7."],

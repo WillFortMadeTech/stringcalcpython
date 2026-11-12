@@ -13,17 +13,19 @@ def add(numbers: str) -> str:
     try:
         __validate_input(separators, numbers)
 
-        numbers_array = __split_number_string(separators, numbers)
+        return str(__add_numbers(separators, numbers))
 
-        return str(
-            "%g" % (reduce(lambda a, b: a + b, [float(num) for num in numbers_array]))
-        )
     except ValueError as error:
         return str(error)
 
 
 def __split_number_string(separators, numbers):
     return re.split("|".join(map(re.escape, separators)), numbers)
+
+
+def __add_numbers(separators, numbers):
+    numbers_array = __split_number_string(separators, numbers)
+    return "%g" % (reduce(lambda a, b: a + b, [float(num) for num in numbers_array]))
 
 
 def __validate_input(separators, numbers):
@@ -38,12 +40,13 @@ def __last_character_of_input_must_not_be_separator(separators, numbers):
 
 
 def __numbers_must_not_include_invalid_delimiter(separators, numbers):
-    for number in __split_number_string(separators, numbers):
+
+    for number_str in __split_number_string(separators, numbers):
         try:
-            number = float(number)
+            number = float(number_str)
         except:
-            invalid_char = re.search(r"[^\d.]", number)
-            index = numbers.index(number) + invalid_char.start()
+            invalid_char = re.search(r"[^\d.]", number_str)
+            index = numbers.index(number_str) + invalid_char.start()
             raise ValueError(
                 f"'{separators[0]}' expected but '{invalid_char.group()}' found at position {index}."
             )
