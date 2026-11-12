@@ -13,13 +13,17 @@ def add(numbers: str) -> str:
     try:
         __validate_input(separators, numbers)
 
-        numbers_array = re.split("|".join(map(re.escape, separators)), numbers)
+        numbers_array = __split_number_string(separators, numbers)
 
         return str(
             "%g" % (reduce(lambda a, b: a + b, [float(num) for num in numbers_array]))
         )
     except ValueError as error:
         return str(error)
+
+
+def __split_number_string(separators, numbers):
+    return re.split("|".join(map(re.escape, separators)), numbers)
 
 
 def __validate_input(separators, numbers):
@@ -34,10 +38,7 @@ def __last_character_of_input_must_not_be_separator(separators, numbers):
 
 
 def __numbers_must_not_include_invalid_delimiter(separators, numbers):
-    # Check if everything in numbers is a number or a valid separator
-    # For char in numbers, if not a number, and not a separator, error with position and character
-    numbers_array = re.split("|".join(map(re.escape, separators)), numbers)
-    for number in numbers_array:
+    for number in __split_number_string(separators, numbers):
         try:
             number = float(number)
         except:

@@ -60,6 +60,8 @@ def test_can_use_custom_delimiters(input_str, expected):
     [
         ["//|\n1|2,3", "'|' expected but ',' found at position 3."],
         ["3,1,5%6", "',' expected but '%' found at position 5."],
+        ["3.1,1,5.3%6", "',' expected but '%' found at position 9."],
+        ["3,16,51%6", "',' expected but '%' found at position 7."],
     ],
 )
 def test_invalid_delimiter_returns_error(input_str, expected):
