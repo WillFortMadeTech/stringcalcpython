@@ -54,6 +54,7 @@ def test_missing_number_in_last_position_returns_error():
 def test_can_use_custom_delimiters(input_str, expected):
     assert add(input_str) == expected
 
+
 @pytest.mark.parametrize(
     "input_str,expected",
     [

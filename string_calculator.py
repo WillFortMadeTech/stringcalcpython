@@ -25,11 +25,27 @@ def add(numbers: str) -> str:
 def __validate_input(separators, numbers):
     __last_character_of_input_must_not_be_separator(separators, numbers)
     __must_not_include_empty_number(separators, numbers)
+    __numbers_must_not_include_invalid_delimiter(separators, numbers)
 
 
 def __last_character_of_input_must_not_be_separator(separators, numbers):
     if numbers[len(numbers) - 1] in separators:
         raise ValueError("Number expected but EOF found")
+
+
+def __numbers_must_not_include_invalid_delimiter(separators, numbers):
+    # Check if everything in numbers is a number or a valid separator
+    # For char in numbers, if not a number, and not a separator, error with position and character
+    numbers_array = re.split("|".join(map(re.escape, separators)), numbers)
+    for number in numbers_array:
+        try:
+            number = float(number)
+        except:
+            invalid_char = re.search(r"[^\d.]", number)
+            index = numbers.index(number) + invalid_char.start()
+            raise ValueError(
+                f"'{separators[0]}' expected but '{invalid_char.group()}' found at position {index}."
+            )
 
 
 def __must_not_include_empty_number(separators, numbers):
@@ -40,7 +56,9 @@ def __must_not_include_empty_number(separators, numbers):
             )
 
 
-def __handle_custom_delimiters(numbers: str, separators: list[str]) -> tuple[str, list[str]]:
+def __handle_custom_delimiters(
+    numbers: str, separators: list[str]
+) -> tuple[str, list[str]]:
     if numbers.startswith("//"):
         splitNumbers = numbers[2:].split("\n")
         separators = [splitNumbers[0]]
