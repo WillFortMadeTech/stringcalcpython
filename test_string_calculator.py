@@ -74,6 +74,7 @@ def test_invalid_delimiter_returns_error(input_str, expected):
     [
         ["-1,2", "Negative not allowed : -1"],
         ["2,-4,-5", "Negative not allowed : -4, -5"],
+        ["3,4,-7", "Negative not allowed : -7"],
     ],
 )
 def test_negative_numbers_not_allowed(input_str, expected):

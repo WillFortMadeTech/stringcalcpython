@@ -1,4 +1,5 @@
 import re
+from decimal import Decimal
 from functools import reduce
 
 
@@ -65,6 +66,11 @@ def __negative_numbers_are_not_allowed(separators, numbers):
         raise ValueError("Negative not allowed : -1")
     elif numbers == "2,-4,-5":
         raise ValueError("Negative not allowed : -4, -5")
+
+    for number_str in __split_number_string(separators, numbers):
+        number = Decimal(number_str)
+        if number < 0:
+            raise ValueError(f"Negative not allowed : {number.normalize()}")
 
 
 def __handle_custom_delimiters(
