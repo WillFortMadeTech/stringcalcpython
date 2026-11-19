@@ -67,3 +67,13 @@ def test_can_use_custom_delimiters(input_str, expected):
 )
 def test_invalid_delimiter_returns_error(input_str, expected):
     assert add(input_str) == expected
+
+
+@pytest.mark.parametrize(
+    "input_str,expected",
+    [
+        ["-1,2", "Negative not allowed : -1"],
+    ],
+)
+def test_negative_numbers_not_allowed(input_str, expected):
+    assert add(input_str) == expected
