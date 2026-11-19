@@ -63,19 +63,13 @@ def __must_not_include_empty_number(separators, numbers):
 
 def __negative_numbers_are_not_allowed(separators, numbers):
 
-    if numbers == "2,-4,-5":
-        negativeArray = []
-        for number_str in __split_number_string(separators, numbers):
-            number = Decimal(number_str)
-            if number < 0:
-                negativeArray.append(str(number.normalize()))
-        if len(negativeArray) > 0:
-            raise ValueError(f"Negative not allowed : {', '.join(negativeArray)}")
-
+    negativeArray = []
     for number_str in __split_number_string(separators, numbers):
         number = Decimal(number_str)
         if number < 0:
-            raise ValueError(f"Negative not allowed : {number.normalize()}")
+            negativeArray.append(str(number.normalize()))
+    if len(negativeArray) > 0:
+        raise ValueError(f"Negative not allowed : {', '.join(negativeArray)}")
 
 
 def __handle_custom_delimiters(
