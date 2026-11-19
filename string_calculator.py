@@ -63,11 +63,12 @@ def __must_not_include_empty_number(separators, numbers):
 
 def __negative_numbers_are_not_allowed(separators, numbers):
 
-    negativeArray = []
-    for number_str in __split_number_string(separators, numbers):
-        number = Decimal(number_str)
-        if number < 0:
-            negativeArray.append(str(number.normalize()))
+    negativeArray = list(
+        filter(
+            lambda number: Decimal(number) < 0,
+            __split_number_string(separators, numbers),
+        )
+    )
     if len(negativeArray) > 0:
         raise ValueError(f"Negative not allowed : {', '.join(negativeArray)}")
 
