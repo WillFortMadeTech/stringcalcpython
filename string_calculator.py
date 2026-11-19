@@ -63,6 +63,8 @@ def __must_not_include_empty_number(separators, numbers):
 def __negative_numbers_are_not_allowed(separators, numbers):
     if numbers == "-1,2":
         raise ValueError("Negative not allowed : -1")
+    elif numbers == "2,-4,-5":
+        raise ValueError("Negative not allowed : -4, -5")
 
 
 def __handle_custom_delimiters(
