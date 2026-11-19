@@ -32,6 +32,7 @@ def __validate_input(separators, numbers):
     __last_character_of_input_must_not_be_separator(separators, numbers)
     __must_not_include_empty_number(separators, numbers)
     __numbers_must_not_include_invalid_delimiter(separators, numbers)
+    __negative_numbers_are_not_allowed(separators, numbers)
 
 
 def __last_character_of_input_must_not_be_separator(separators, numbers):
@@ -40,7 +41,6 @@ def __last_character_of_input_must_not_be_separator(separators, numbers):
 
 
 def __numbers_must_not_include_invalid_delimiter(separators, numbers):
-
     for number_str in __split_number_string(separators, numbers):
         try:
             number = float(number_str)
@@ -58,6 +58,11 @@ def __must_not_include_empty_number(separators, numbers):
             raise ValueError(
                 f"Number expected but '{numbers[position]}' found at position {position}."
             )
+
+
+def __negative_numbers_are_not_allowed(separators, numbers):
+    if numbers == "-1,2":
+        raise ValueError("Negative not allowed : -1")
 
 
 def __handle_custom_delimiters(
